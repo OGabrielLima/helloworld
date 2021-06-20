@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'helloworldapp',
     'gestaoacademicaapp',
     'crispy_forms',
+    'accounts',
 ]
 
 MIDDLEWARE = [

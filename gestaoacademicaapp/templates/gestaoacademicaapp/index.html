@@ -1,42 +1,133 @@
 {% extends 'base.html' %}
 {% block title %} Grade Horária {% endblock %}
 {% block content %}
-<div class="offset-1 col-10 list-div">
-    <h2>Disciplinas do Curso</h2>
-    {% if user.is_authenticated %}
-    <h3 style="color: #6aafd6"> Olá  {{ user.username }} </h3>
-    {% endif %}
-
-    <table class="blueTable">
-        <thead>
-            <tr>
-                <th>Título da Disciplina</th>
-                <th>Turno</th>
-                <th>Dia da Semana</th>
-                <th>Semestre</th>
-                <th>Status</th>
-                <th>Local</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for listamatricula in disciplinas %}
-            <tr>
-                <td>{{listamatricula.disciplina.titulo}}</td>
-                <td>{{listamatricula.disciplina.turno}}</td>
-                <td>{{listamatricula.disciplina.diadasemana}}</td>
-                <td>{{listamatricula.semestre}}</td>
-                <td>{{listamatricula.status}}</td>
-                <td>{{listamatricula.disciplina.local}}</td>
-                <td>
-                    <a href="{{listamatricula.disciplina.local}}"><span><i class="fas fa-chalkboard-teacher" title="Entrar na aula"></i></span></a>
-                    <a href="fazerMatricula/{{listamatricula.id}}"><i class="fas fa-user-graduate" title="Realizar Matricula"></i></a></td>
-            </tr>
-              {% endfor %}
-        </tbody>
-        </tr>
-    </table>
-
-
+<div class="bg-dark text-secondary px-4 text-center">
+    <div class="py-3">
+        <h1 class="display-5 fw-bold text-white">Lançamentos</h1>
+        </div>
+    </div>
 </div>
+<div class="container col-xxl-8 px-4 ">
+<div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+  <div class="col-10 col-sm-8 col-lg-6">
+   <img src="/static/img/images.png" width="600px">
+  </div>
+  <div class="col-lg-6">
+    <h1 class="display-5 fw-bold lh-1 mb-3">Diversas Opções de gráficos para você organizar sua vida financeira!</h1>
+    <p class="lead">Quer saber mais? Clique no link abaixo!</p>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+      <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">
+         <a style="color: white; text-decoration: none;" href="/admin">Novo Lançamento</a>
+
+      </button>
+      <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+          <a style="color: black; text-decoration: none;" href="#">Visualizar Lançamentos</a>
+
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+<div class="b-example-divider mb-0"></div>
+    <div class="offset-1 col-10 list-div">
+        <h2>MEUS LANÇAMENTOS</h2>
+        {% if user.is_authenticated %}
+        <h3 style="color: rgb(5, 141, 219)"> Olá  {{ user.username }} </h3>
+        {% endif %}
+    </div>
+
+    <div class="offset-1 col-10 list-div">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Conta</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Ações</th>
+                    <!--<th scope="col">Status</th>
+                    -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for listadespesa in despesas %}
+                    <tr>
+                        <td>{{listadespesa.descricaodespesa}}</td>
+                        <td>{{listadespesa.categoriadespesa}}</td>
+                        <td>{{listadespesa.valordespesa}}</td>
+                        <td>{{listadespesa.contadespesa}}</td>
+                        <td>{{listadespesa.status}}</td>
+                        <td>
+                            <!--<a href="{{listamatricula.disciplina.local}}"><span><i class="fas fa-chalkboard-teacher" title="Entrar na aula"></i></span></a>-->
+                            <a href="fazerPagamento/{{listadespesa.id}}"><i class="fas fa-thumbs-up" title="Realizar Pagamento"></i></a>
+                            <a href="tornarPendente/{{listadespesa.id}}"><i class="fas fa-thumbs-down" title="Tornar Pendente"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <!--<<tr>
+                    <td>{{listamatricula.disciplina.titulo}}</td>
+                    <td>{{listamatricula.disciplina.turno}}</td>
+                    <td>{{listamatricula.disciplina.diadasemana}}</td>
+                    <td>{{listamatricula.semestre}}</td>
+                    <td>{{listamatricula.status}}</td>
+                    <td>{{listamatricula.disciplina.local}}</td>
+                    <td>
+                        <a href="{{listamatricula.disciplina.local}}"><span><i class="fas fa-chalkboard-teacher" title="Entrar na aula"></i></span></a>
+                        <a href="fazerMatricula/{{listamatricula.id}}"><i class="fas fa-user-graduate" title="Realizar Matricula"></i></a></td>
+                </tr>-->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+<div class="b-example-divider"></div>
+
+<div class="container px-4 py-5" id="hanging-icons">
+    <h2 class="pb-2 border-bottom">Hanging icons</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="col d-flex align-items-start">
+            <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
+            </div>
+            <div>
+                <h2>Featured title</h2>
+                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                <a href="#" class="btn btn-primary">
+                    Primary button
+                </a>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"/></svg>
+            </div>
+            <div>
+                <h2>Featured title</h2>
+                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                <a href="#" class="btn btn-primary">
+                    Primary button
+                </a>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em"><use xlink:href="#tools"/></svg>
+            </div>
+            <div>
+                <h2>Featured title</h2>
+                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                <a href="#" class="btn btn-primary">
+                Primary button
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
